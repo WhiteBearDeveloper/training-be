@@ -9,7 +9,6 @@ import * as brcrypt from 'bcryptjs';
 import { CommonUserDto } from '../users/dto/common-user.dto';
 import { User } from '../users/users.model';
 import { UsersService } from '../users/users.service';
-import { SexEnum } from '../users/users.types';
 import { UserInformation } from './auth.types';
 
 @Injectable()

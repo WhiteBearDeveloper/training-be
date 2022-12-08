@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { AuthModule, UsersModule } from './modules/';
+import { AuthModule, ProfileModule, UsersModule } from './modules/';
 import { JwtAuthGuard } from './modules/auth/jwt-auth.guard';
+import { Profile } from './modules/profile/profile.model';
 import { User } from './modules/users/users.model';
 
 @Module({
@@ -23,11 +24,12 @@ import { User } from './modules/users/users.model';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User],
+      models: [User, Profile],
       autoLoadModels: true,
     }),
     UsersModule,
     AuthModule,
+    ProfileModule,
   ],
 })
 export class AppModule {}

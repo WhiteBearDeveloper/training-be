@@ -8,14 +8,12 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { SexEnum } from './users.types';
 // import { Role } from 'src/roles/roles.model';
 // import { UserRoles } from 'src/user-roles/user-roles';
 
 interface UserCreationProps {
   email: string;
   password: string;
-  sex: SexEnum;
 }
 
 @Table({ tableName: 'users' })
@@ -43,13 +41,6 @@ export class User extends Model<User, UserCreationProps> {
     allowNull: false,
   })
   password: string;
-
-  @ApiProperty({ example: '1', description: 'Пол' })
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  sex: SexEnum;
 
   // @BelongsToMany(() => Role, () => UserRoles)
   // roles: Role[];
