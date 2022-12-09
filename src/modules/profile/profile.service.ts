@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { UsersService } from '../users/users.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { Profile } from './profile.model';
 
@@ -8,7 +7,6 @@ import { Profile } from './profile.model';
 export class ProfileService {
   constructor(
     @InjectModel(Profile) private profileRepository: typeof Profile,
-    private userService: UsersService,
   ) {}
 
   async createProfile(dto: CreateProfileDto) {
