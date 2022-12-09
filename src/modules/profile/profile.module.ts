@@ -7,6 +7,7 @@ import { Profile } from './profile.model';
 @Module({
   providers: [ProfileService],
   controllers: [ProfileController],
+  exports: [ProfileService],
   imports: [SequelizeModule.forFeature([Profile])],
 })
 export class ProfileModule {}
