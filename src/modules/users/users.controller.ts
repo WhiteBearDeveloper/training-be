@@ -7,8 +7,6 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-// import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 // import { Roles } from 'src/auth/roles-auth.decorator';
 // import { RolesGuard } from 'src/auth/roles.guard';
 // import { ValidationPipe } from 'src/pipes/validation.pipe';
@@ -32,7 +30,6 @@ import { UsersService } from './users.service';
 //   @ApiOperation({ summary: 'Получение списка всех пользователей' })
 //   @ApiResponse({ status: 200, type: [User] })
 //   //   @Roles('ADMIN')
-//   @UseGuards(JwtAuthGuard)
 //   //   @UseGuards(RolesGuard)
 //   @Get()
 //   getAll() {
@@ -42,7 +39,6 @@ import { UsersService } from './users.service';
 //   @ApiOperation({ summary: 'Выдача роли' })
 //   @ApiResponse({ status: 200 })
 //   @Roles('ADMIN')
-// @UseGuards(JwtAuthGuard)
 //   @UseGuards(RolesGuard)
 //   @Post('/role')
 //   addRole(@Body() dto: AddRoleDto) {

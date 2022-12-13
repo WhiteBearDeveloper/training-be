@@ -21,7 +21,6 @@ export class ProfileController {
   //   @ApiOperation({ summary: 'Получение списка всех пользователей' })
   //   @ApiResponse({ status: 200, type: [User] })
   //   //   @Roles('ADMIN')
-  //   @UseGuards(JwtAuthGuard)
   //   //   @UseGuards(RolesGuard)
   //   @Get()
   //   getAll() {
@@ -31,7 +30,6 @@ export class ProfileController {
   //   @ApiOperation({ summary: 'Выдача роли' })
   //   @ApiResponse({ status: 200 })
   //   @Roles('ADMIN')
-  //   @UseGuards(JwtAuthGuard)
   //   @UseGuards(RolesGuard)
   //   @Post('/role')
   //   addRole(@Body() dto: AddRoleDto) {
