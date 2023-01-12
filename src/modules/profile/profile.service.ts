@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { Profile } from './profile.model';
+import { ProfileCreationProps } from './profile.types';
 
 @Injectable()
 export class ProfileService {
@@ -22,7 +23,7 @@ export class ProfileService {
   }
 
   private async getProfileById(userId: number) {
-    const profile = await this.profileRepository.findOne({
+    const profile: ProfileCreationProps = await this.profileRepository.findOne({
       where: { userId },
       include: { all: true },
       attributes: { exclude: ['userId'] },

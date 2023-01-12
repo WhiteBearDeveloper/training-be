@@ -1,19 +1,13 @@
 // import { ApiProperty } from '@nestjs/swagger';
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { SexEnum } from './profile.types';
+import { ProfileCreationProps, SexEnum } from './profile.types';
+import { WithIntegerUserId } from 'src/types/common';
 
-interface ProfileCreationProps {
-  firstName: string;
-  lastName: string;
-  middleName: string;
-  birthDate: string;
-  sex: SexEnum;
-  userId: number;
-}
+interface ProfileInterface extends ProfileCreationProps, WithIntegerUserId {}
 
 @Table({ tableName: 'profile' })
-export class Profile extends Model<Profile, ProfileCreationProps> {
+export class Profile extends Model<Profile, ProfileInterface> {
   @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @Column({
     type: DataType.INTEGER,
