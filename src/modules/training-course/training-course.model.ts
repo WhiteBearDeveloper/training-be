@@ -22,7 +22,7 @@ export class TrainingCourse extends Model<
   @ApiProperty({ example: 'Тренировка бицепса', description: 'Название курса' })
   @Column({
     type: DataType.STRING,
-    allowNull: true,
+    allowNull: false,
   })
   name: string;
 

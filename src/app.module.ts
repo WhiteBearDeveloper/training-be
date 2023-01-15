@@ -2,7 +2,12 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { AuthModule, ProfileModule, UsersModule } from './modules/';
+import {
+  AuthModule,
+  ProfileModule,
+  UsersModule,
+  TrainingCourseModule,
+} from './modules/';
 import { JwtAuthGuard } from './modules/auth/jwt-auth.guard';
 import { Profile } from './modules/profile/profile.model';
 import { User } from './modules/users/users.model';
@@ -30,6 +35,7 @@ import { User } from './modules/users/users.model';
     UsersModule,
     AuthModule,
     ProfileModule,
+    TrainingCourseModule,
   ],
 })
 export class AppModule {}
