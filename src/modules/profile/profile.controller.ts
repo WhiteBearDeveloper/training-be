@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, Post, UsePipes } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { CreateProfileDto } from './dto/create-profile.dto';
@@ -23,7 +23,7 @@ export class ProfileController {
   @ApiResponse({ status: 200, type: Profile })
   @Get('/me')
   getMyProfile(@UserIdExtraction() id: number) {
-    return this.profileService.getMyProfile(id);
+    return this.profileService.getProfileById(id);
   }
 
   //   @ApiOperation({ summary: 'Получение списка всех пользователей' })
