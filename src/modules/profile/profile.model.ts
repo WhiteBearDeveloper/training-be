@@ -1,7 +1,8 @@
 // import { ApiProperty } from '@nestjs/swagger';
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { ProfileInterface, SexEnum } from './profile.types';
+import { ProfileInterface } from './profile.types';
+import { SexEnum } from '@whitebeardeveloper/training-logic/src/common/types';
 
 @Table({ tableName: 'profile' })
 export class Profile extends Model<Profile, ProfileInterface> {

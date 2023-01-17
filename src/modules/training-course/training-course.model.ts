@@ -1,9 +1,11 @@
-// import { ApiProperty } from '@nestjs/swagger';
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { Common, WithIntegerProfileId } from 'src/types/common';
+import {
+  WithProfileId,
+  Common,
+} from '@whitebeardeveloper/training-logic/src/common/types';
 
-interface TrainingCourseInterface extends WithIntegerProfileId, Common {}
+interface TrainingCourseInterface extends WithProfileId, Common {}
 
 @Table({ tableName: 'training-courses' })
 export class TrainingCourse extends Model<

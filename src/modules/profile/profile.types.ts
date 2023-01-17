@@ -1,9 +1,8 @@
-import { WithIntegerId, WithIntegerUserId } from 'src/types/common';
-
-export enum SexEnum {
-  'male' = 1,
-  'female' = 2,
-}
+import {
+  WithId,
+  SexEnum,
+} from '@whitebeardeveloper/training-logic/src/common/types';
+import { WithUserId } from 'src/types/common';
 
 export interface ProfileCreationProps {
   firstName: string;
@@ -15,5 +14,5 @@ export interface ProfileCreationProps {
 
 export interface ProfileInterface
   extends ProfileCreationProps,
-    WithIntegerId,
-    WithIntegerUserId {}
+    WithId,
+    WithUserId {}
