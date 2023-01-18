@@ -1,4 +1,4 @@
-import { WithId } from '@whitebeardeveloper/training-logic/src/common/types';
+import { WithId } from '@whitebeardeveloper/training-logic/dist/common/types';
 
 export interface UserInformation extends WithId {
   token: string;

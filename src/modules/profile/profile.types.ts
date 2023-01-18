@@ -1,7 +1,7 @@
 import {
   WithId,
   SexEnum,
-} from '@whitebeardeveloper/training-logic/src/common/types';
+} from '@whitebeardeveloper/training-logic/dist/common/types';
 import { WithUserId } from 'src/types/common';
 
 export interface ProfileCreationProps {

@@ -3,7 +3,7 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import {
   WithProfileId,
   Common,
-} from '@whitebeardeveloper/training-logic/src/common/types';
+} from '@whitebeardeveloper/training-logic/dist/common/types';
 
 interface TrainingCourseInterface extends WithProfileId, Common {}
 

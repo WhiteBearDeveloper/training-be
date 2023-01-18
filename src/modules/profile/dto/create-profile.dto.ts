@@ -6,7 +6,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { SexEnum } from '@whitebeardeveloper/training-logic/src/common/types';
+import { SexEnum } from '@whitebeardeveloper/training-logic/dist/common/types';
 
 export class CreateProfileDto {
   @ApiProperty({ example: 'Олег', description: 'Имя пользователя' })
