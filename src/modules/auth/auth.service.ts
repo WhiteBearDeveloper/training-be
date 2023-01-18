@@ -9,7 +9,7 @@ import * as brcrypt from 'bcryptjs';
 import { CommonUserDto } from '../users/dto/common-user.dto';
 import { User } from '../users/users.model';
 import { UsersService } from '../users/users.service';
-import { UserInformation } from './auth.types';
+import { AuthAnswer } from '@whitebeardeveloper/training-logic/dist/auth/types';
 
 @Injectable()
 export class AuthService {
@@ -18,13 +18,13 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(userDto: CommonUserDto): Promise<UserInformation> {
+  async login(userDto: CommonUserDto): Promise<AuthAnswer> {
     const user = await this.validateUser(userDto);
     const tokenData = await this.generateToken(user);
     return { id: user.id, token: tokenData.token };
   }
 
-  async registration(userDto: CommonUserDto): Promise<UserInformation> {
+  async registration(userDto: CommonUserDto): Promise<AuthAnswer> {
     const newUser = await this.userService.getUserByEmail(userDto.email);
     if (newUser) {
       throw new HttpException(
