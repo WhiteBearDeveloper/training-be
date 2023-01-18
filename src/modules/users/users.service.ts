@@ -25,20 +25,20 @@ export class UsersService {
     return user;
   }
 
-  async getAllUsers() {
-    const users = await this.userRepository.findAll({
-      attributes: { exclude: ['password'] },
-    });
-    return users;
-  }
-
-  // async getUserByEmail(email: string): Promise<User> {
-  //   const user = await this.userRepository.findOne({
-  //     where: { email },
-  //     include: { all: true },
+  // async getAllUsers() {
+  //   const users = await this.userRepository.findAll({
+  //     attributes: { exclude: ['password'] },
   //   });
-  //   return user;
+  //   return users;
   // }
+
+  async getUserByEmail(email: string): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: { email },
+      include: { all: true },
+    });
+    return user;
+  }
 
   //   async addRole(dto: AddRoleDto) {
   //     const user = await this.userRepository.findByPk(dto.userId);
