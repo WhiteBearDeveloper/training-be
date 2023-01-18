@@ -7,8 +7,10 @@ import {
   IsString,
 } from 'class-validator';
 import { SexEnum } from '@whitebeardeveloper/training-logic/dist/common/types';
+import { ProfileProps } from '@whitebeardeveloper/training-logic/dist/profile/types';
+import { WithUserId } from 'src/types/common';
 
-export class CreateProfileDto {
+export class CreateProfileDto implements Partial<ProfileProps>, WithUserId {
   @ApiProperty({ example: 'Олег', description: 'Имя пользователя' })
   @IsString({ message: 'Должно быть строкой' })
   @IsOptional()
