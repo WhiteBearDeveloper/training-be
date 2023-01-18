@@ -5,6 +5,7 @@ import { CommonUserDto } from './dto/common-user.dto';
 // import { RolesService } from 'src/roles/roles.service';
 // import { AddRoleDto } from './dto/add-role.dto';
 import { User } from './users.model';
+import { UserModel } from './users.types';
 
 @Injectable()
 export class UsersService {
@@ -13,7 +14,7 @@ export class UsersService {
     private profileService: ProfileService, // private roleService: RolesService,
   ) {}
 
-  async createUser(dto: CommonUserDto) {
+  async createUser(dto: CommonUserDto): Promise<User> {
     const user = await this.userRepository.create(dto);
     const profile = await this.profileService.createProfile({
       userId: user.id,
@@ -31,13 +32,13 @@ export class UsersService {
     return users;
   }
 
-  async getUserByEmail(email: string) {
-    const user = await this.userRepository.findOne({
-      where: { email },
-      include: { all: true },
-    });
-    return user;
-  }
+  // async getUserByEmail(email: string): Promise<User> {
+  //   const user = await this.userRepository.findOne({
+  //     where: { email },
+  //     include: { all: true },
+  //   });
+  //   return user;
+  // }
 
   //   async addRole(dto: AddRoleDto) {
   //     const user = await this.userRepository.findByPk(dto.userId);

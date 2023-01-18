@@ -1,4 +1,3 @@
-// import { ApiProperty } from '@nestjs/swagger';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   BelongsToMany,
@@ -8,16 +7,13 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
+import { UserModel } from './users.types';
 // import { Role } from 'src/roles/roles.model';
 // import { UserRoles } from 'src/user-roles/user-roles';
-
-interface UserCreationProps {
-  email: string;
-  password: string;
-}
+// import { UserRoles } from 'src/user-roles/user-roles';
 
 @Table({ tableName: 'users' })
-export class User extends Model<User, UserCreationProps> {
+export class User extends Model<User, UserModel> {
   @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @Column({
     type: DataType.INTEGER,
