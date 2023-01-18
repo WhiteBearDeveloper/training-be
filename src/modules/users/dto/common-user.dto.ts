@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, Length } from 'class-validator';
+import { AuthProps } from '@whitebeardeveloper/training-logic/dist/auth/types';
 
-export class CommonUserDto {
+export class CommonUserDto implements AuthProps {
   @ApiProperty({ example: 'user@email.com', description: 'Почтовый адрес' })
   @IsString({ message: 'Должно быть строкой' })
   @IsEmail({}, { message: 'Некорректный email' })
