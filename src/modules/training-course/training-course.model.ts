@@ -1,17 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import {
-  WithProfileId,
-  Common,
-} from '@whitebeardeveloper/training-logic/dist/common/types';
-
-interface TrainingCourseInterface extends WithProfileId, Common {}
+import { CommonWithProfileId } from '@whitebeardeveloper/training-logic/dist/common/types';
 
 @Table({ tableName: 'training-courses' })
-export class TrainingCourse extends Model<
-  TrainingCourse,
-  TrainingCourseInterface
-> {
+export class TrainingCourse extends Model<TrainingCourse, CommonWithProfileId> {
   @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @Column({
     type: DataType.INTEGER,
