@@ -4,7 +4,7 @@ import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { Profile } from './profile.model';
 import { ProfileService } from './profile.service';
-import { UserIdExtraction } from '../../decorators/exctraction.decorator';
+import { UserIdExtraction } from '../../decorators/extraction.decorator';
 
 @ApiTags('Профиль')
 @Controller('profile')
