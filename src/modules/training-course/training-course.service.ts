@@ -24,4 +24,9 @@ export class TrainingCourseService {
     });
     return trainingCourse;
   }
+
+  async getAllTrainingCourses(): Promise<TrainingCourse[]> {
+    const trainings = await this.trainingCourseRepository.findAll();
+    return trainings;
+  }
 }

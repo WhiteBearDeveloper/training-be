@@ -1,10 +1,11 @@
-import { Body, Controller, Post, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, Post, UsePipes } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TrainingCourseService } from './training-course.service';
 import { TrainingCourse } from './training-course.model';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { CreateTrainingCourseDto } from './dto/create-training-course.dto';
-import { UserIdExtraction } from 'src/decorators/exctraction.decorator';
+import { UserIdExtraction } from 'src/decorators/extraction.decorator';
+import { IsPublic } from 'src/services/auth/decorators';
 
 @ApiTags('Тренировочный курс')
 @Controller('training-courses')
@@ -23,5 +24,14 @@ export class TrainingCourseController {
       trainingCourseDto,
       userId,
     );
+  }
+
+  @ApiOperation({ summary: 'Получение списка всех тренировочных курсов' })
+  @ApiResponse({ status: 200, type: [TrainingCourse] })
+  @UsePipes(ValidationPipe)
+  @Get()
+  @IsPublic()
+  getAll() {
+    return this.trainingCourseService.getAllTrainingCourses();
   }
 }
