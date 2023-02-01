@@ -21,7 +21,7 @@ export class AuthService {
   async login(userDto: CommonUserDto): Promise<AuthAnswer> {
     const user = await this.validateUser(userDto);
     const tokenData = await this.generateToken(user);
-    return { id: user.id, token: tokenData.token };
+    return { id: user.id, token: tokenData.token, email: user.email };
   }
 
   async registration(userDto: CommonUserDto): Promise<AuthAnswer> {
@@ -47,6 +47,7 @@ export class AuthService {
     return {
       id: user.id,
       token: tokenData.token,
+      email: user.email,
     };
   }
 
