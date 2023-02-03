@@ -35,7 +35,7 @@ export class TrainingCourseController {
     return this.trainingCourseService.getAllTrainingCourses();
   }
 
-  @ApiOperation({ summary: 'Получение списка всех тренировочных курсов' })
+  @ApiOperation({ summary: 'Получение тренировочного курса' })
   @ApiResponse({ status: 200, type: [TrainingCourse] })
   @UsePipes(ValidationPipe)
   @Get('/:id')
