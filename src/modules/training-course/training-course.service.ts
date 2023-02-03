@@ -29,4 +29,11 @@ export class TrainingCourseService {
     const trainings = await this.trainingCourseRepository.findAll();
     return trainings;
   }
+
+  async getTrainingCourseById(id: number): Promise<TrainingCourse> {
+    const training = await this.trainingCourseRepository.findOne({
+      where: { id },
+    });
+    return training;
+  }
 }
