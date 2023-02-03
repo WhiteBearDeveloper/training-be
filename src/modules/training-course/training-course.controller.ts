@@ -1,15 +1,11 @@
-import { Body, Controller, Get, Post, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UsePipes } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TrainingCourseService } from './training-course.service';
 import { TrainingCourse } from './training-course.model';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
-import {
-  CreateTrainingCourseDto,
-  GetTrainingCourseDto,
-} from './dto/create-training-course.dto';
+import { CreateTrainingCourseDto } from './dto/create-training-course.dto';
 import { UserIdExtraction } from 'src/decorators/extraction.decorator';
 import { IsPublic } from 'src/services/auth/decorators';
-import { WithId } from '@whitebeardeveloper/training-logic/dist/common/types';
 
 @ApiTags('Тренировочный курс')
 @Controller('training-courses')
@@ -35,11 +31,16 @@ export class TrainingCourseController {
   @UsePipes(ValidationPipe)
   @Get()
   @IsPublic()
-  getCourses(@Body() getTrainingCourseDto?: GetTrainingCourseDto) {
-    return getTrainingCourseDto.id
-      ? this.trainingCourseService.getTrainingCourseById(
-          getTrainingCourseDto.id,
-        )
-      : this.trainingCourseService.getAllTrainingCourses();
+  getCourses() {
+    return this.trainingCourseService.getAllTrainingCourses();
+  }
+
+  @ApiOperation({ summary: 'Получение списка всех тренировочных курсов' })
+  @ApiResponse({ status: 200, type: [TrainingCourse] })
+  @UsePipes(ValidationPipe)
+  @Get('/:id')
+  @IsPublic()
+  getCourseById(@Param('id') id: number) {
+    return this.trainingCourseService.getTrainingCourseById(Number(id));
   }
 }

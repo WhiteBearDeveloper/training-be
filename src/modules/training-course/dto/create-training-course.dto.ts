@@ -10,13 +10,3 @@ export class CreateTrainingCourseDto {
   @IsString({ message: 'Должно быть строкой' })
   readonly name: string;
 }
-
-export class GetTrainingCourseDto {
-  @ApiProperty({
-    example: '7',
-    description: 'Id тренировочного курса',
-  })
-  @IsNumber({}, { message: 'Должно быть числом' })
-  @IsOptional()
-  readonly id?: number;
-}
