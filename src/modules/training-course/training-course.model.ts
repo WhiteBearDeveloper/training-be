@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { TrainingCourseModel } from '@whitebeardeveloper/training-logic/src/training-course/types';
+import { TrainingCourseModel } from '@whitebeardeveloper/training-logic/logic/training-course/types';
 
 @Table({ tableName: 'training-courses' })
 export class TrainingCourse extends Model<TrainingCourse, TrainingCourseModel> {

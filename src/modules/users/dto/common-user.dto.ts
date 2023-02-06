@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, Length } from 'class-validator';
-import { AuthProps } from '@whitebeardeveloper/training-logic/dist/auth/types';
+import { AuthProps } from '@whitebeardeveloper/training-logic/logic/auth/types';
 
 export class CommonUserDto implements AuthProps {
   @ApiProperty({ example: 'user@email.com', description: 'Почтовый адрес' })
