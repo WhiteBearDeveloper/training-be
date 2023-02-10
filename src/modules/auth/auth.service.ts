@@ -9,7 +9,7 @@ import * as brcrypt from 'bcryptjs';
 import { CommonUserDto } from '../users/dto/common-user.dto';
 import { User } from '../users/users.model';
 import { UsersService } from '../users/users.service';
-import { AuthAnswer } from '@whitebeardeveloper/training-logic/logic/auth/types';
+import { AuthAnswer } from '@whitebeardeveloper/training-logic/logic/types/auth.types';
 
 @Injectable()
 export class AuthService {

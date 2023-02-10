@@ -6,8 +6,10 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { SexEnum } from '@whitebeardeveloper/training-logic/logic/common/types';
-import { ProfileProps } from '@whitebeardeveloper/training-logic/logic/profile/types';
+import {
+  SexEnum,
+  ProfileProps,
+} from '@whitebeardeveloper/training-logic/logic/types/profile.types';
 import { WithUserId } from 'src/types/common';
 
 export class CreateProfileDto implements Partial<ProfileProps>, WithUserId {

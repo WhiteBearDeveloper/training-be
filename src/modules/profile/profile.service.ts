@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { Profile } from './profile.model';
 import { ProfileInterface } from './profile.types';
-import { ProfileModel } from '@whitebeardeveloper/training-logic/logic/profile/types';
+import { ProfileModel } from '@whitebeardeveloper/training-logic/logic/types/profile.types';
 
 @Injectable()
 export class ProfileService {

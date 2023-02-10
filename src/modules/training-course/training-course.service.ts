@@ -3,7 +3,7 @@ import { TrainingCourse } from './training-course.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateTrainingCourseDto } from './dto/create-training-course.dto';
 import { ProfileService } from '../profile/profile.service';
-import { TrainingCourseModel } from '@whitebeardeveloper/training-logic/logic/training-course/types';
+import { TrainingCourseModel } from '@whitebeardeveloper/training-logic/logic/types/training-course.types';
 
 @Injectable()
 export class TrainingCourseService {
