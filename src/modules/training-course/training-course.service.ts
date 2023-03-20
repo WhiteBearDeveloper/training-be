@@ -20,7 +20,7 @@ export class TrainingCourseService {
     const profileId = await this.profileService.getProfileIdByUserId(userId);
     const trainingCourse = await this.trainingCourseRepository.create({
       ...dto,
-      profileId,
+      authorId: profileId,
     });
     return trainingCourse;
   }

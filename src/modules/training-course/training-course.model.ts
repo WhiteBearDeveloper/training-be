@@ -28,5 +28,5 @@ export class TrainingCourse extends Model<TrainingCourse, TrainingCourseModel> {
     type: DataType.INTEGER,
     allowNull: false,
   })
-  profileId: number;
+  authorId: number;
 }
