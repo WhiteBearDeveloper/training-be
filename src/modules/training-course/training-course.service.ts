@@ -18,10 +18,16 @@ export class TrainingCourseService {
     userId: number,
   ): Promise<TrainingCourseModel> {
     const profileId = await this.profileService.getProfileIdByUserId(userId);
-    const trainingCourse = await this.trainingCourseRepository.create({
+    const trainingCourseDtb = await this.trainingCourseRepository.create({
       ...dto,
       authorId: profileId,
     });
+    const trainingCourse: TrainingCourseModel = {
+      ...trainingCourseDtb.dataValues,
+      control: {
+        isEditable: true,
+      },
+    };
     return trainingCourse;
   }
 
