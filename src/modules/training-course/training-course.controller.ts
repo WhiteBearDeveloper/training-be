@@ -40,7 +40,7 @@ export class TrainingCourseController {
   @UsePipes(ValidationPipe)
   @Get('/:id')
   @IsPublic()
-  getCourseById(@Param('id') id: number) {
-    return this.trainingCourseService.getTrainingCourseById(Number(id));
+  getCourseById(@UserIdExtraction() userId: number, @Param('id') id: number) {
+    return this.trainingCourseService.getTrainingCourseById(Number(id), userId);
   }
 }

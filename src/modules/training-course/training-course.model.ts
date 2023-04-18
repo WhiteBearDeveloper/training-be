@@ -3,10 +3,10 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { TrainingCourseModel } from '@whitebeardeveloper/training-logic/logic/types/training-course.types';
 
 @Table({ tableName: 'training-courses' })
-export class TrainingCourse extends Model<
-  TrainingCourse,
-  Omit<TrainingCourseModel, 'control'>
-> {
+export class TrainingCourse
+  extends Model<TrainingCourse>
+  implements TrainingCourseModel
+{
   @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @Column({
     type: DataType.INTEGER,
@@ -32,4 +32,5 @@ export class TrainingCourse extends Model<
     allowNull: false,
   })
   authorId: number;
+  control?: { isEditable?: boolean };
 }

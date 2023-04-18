@@ -22,13 +22,8 @@ export class TrainingCourseService {
       ...dto,
       authorId: profileId,
     });
-    const trainingCourse: TrainingCourseModel = {
-      ...trainingCourseDtb.dataValues,
-      control: {
-        isEditable: true,
-      },
-    };
-    return trainingCourse;
+    trainingCourseDtb.setDataValue('control', { isEditable: true });
+    return trainingCourseDtb;
   }
 
   async getAllTrainingCourses(): Promise<TrainingCourse[]> {
@@ -36,10 +31,19 @@ export class TrainingCourseService {
     return trainings;
   }
 
-  async getTrainingCourseById(id: number): Promise<TrainingCourse> {
+  async getTrainingCourseById(
+    id: number,
+    userId?: number,
+  ): Promise<TrainingCourse> {
+    const profileId = userId
+      ? await this.profileService.getProfileIdByUserId(userId)
+      : null;
     const training = await this.trainingCourseRepository.findOne({
       where: { id },
     });
+    if (profileId && profileId === training.dataValues.authorId) {
+      training.setDataValue('control', { isEditable: true });
+    }
     return training;
   }
 }
