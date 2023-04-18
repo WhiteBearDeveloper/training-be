@@ -21,16 +21,12 @@ export class JwtAuthGuard implements CanActivate {
       context.getHandler(),
     );
 
-    if (isPublic) {
-      return true;
-    }
-
     try {
       const authHeader = request.headers.authorization;
       const bearer = authHeader.split(' ')[0];
       const token = authHeader.split(' ')[1];
 
-      if (bearer !== 'Bearer' || !token) {
+      if ((bearer !== 'Bearer' || !token) && !isPublic) {
         throw new UnauthorizedException({
           message: 'Пользователь не авторизован',
         });
@@ -40,6 +36,9 @@ export class JwtAuthGuard implements CanActivate {
       request.user = user;
       return true;
     } catch (e) {
+      if (isPublic) {
+        return true;
+      }
       throw new UnauthorizedException({
         message: 'Пользователь не авторизован',
       });
