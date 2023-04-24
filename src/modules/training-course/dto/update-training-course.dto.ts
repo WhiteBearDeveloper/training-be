@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { WithId } from '@whitebeardeveloper/training-logic/logic/types/common.types';
 
 export class UpdateTrainingCourseDto implements WithId {
@@ -8,7 +8,7 @@ export class UpdateTrainingCourseDto implements WithId {
     description: 'Id тренировки',
   })
   @IsNotEmpty({ message: 'Поле не может быть пустым' })
-  @IsString({ message: 'Должно быть строкой' })
+  @IsNumber({}, { message: 'Должно быть числом' })
   readonly id: number;
 
   @ApiProperty({
