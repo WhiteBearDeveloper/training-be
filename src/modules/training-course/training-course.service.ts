@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { CreateTrainingCourseDto } from './dto/create-training-course.dto';
 import { ProfileService } from '../profile/profile.service';
 import { TrainingCourseModel } from '@whitebeardeveloper/training-logic/logic/types/training-course.types';
+import { UpdateTrainingCourseDto } from './dto/update-training-course.dto';
 
 @Injectable()
 export class TrainingCourseService {
@@ -29,6 +30,23 @@ export class TrainingCourseService {
   async getAllTrainingCourses(): Promise<TrainingCourse[]> {
     const trainings = await this.trainingCourseRepository.findAll();
     return trainings;
+  }
+
+  async updateTrainingCourse(
+    dto: UpdateTrainingCourseDto,
+    userId?: number,
+  ): Promise<TrainingCourseModel> {
+    const { id, ...data } = dto;
+    await this.trainingCourseRepository.update(
+      { ...data },
+      {
+        where: {
+          id,
+        },
+      },
+    );
+    const trainingCourseDtb = await this.getTrainingCourseById(id, userId);
+    return trainingCourseDtb;
   }
 
   async getTrainingCourseById(

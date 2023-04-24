@@ -1,9 +1,18 @@
-import { Body, Controller, Get, Param, Post, UsePipes } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UsePipes,
+  Put,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TrainingCourseService } from './training-course.service';
 import { TrainingCourse } from './training-course.model';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { CreateTrainingCourseDto } from './dto/create-training-course.dto';
+import { UpdateTrainingCourseDto } from './dto/update-training-course.dto';
 import { UserIdExtraction } from 'src/decorators/extraction.decorator';
 import { IsPublic } from 'src/services/auth/decorators';
 
@@ -42,5 +51,20 @@ export class TrainingCourseController {
   @IsPublic()
   getCourseById(@UserIdExtraction() userId: number, @Param('id') id: number) {
     return this.trainingCourseService.getTrainingCourseById(Number(id), userId);
+  }
+
+  @ApiOperation({ summary: 'Обновление тренировочного курса' })
+  @ApiResponse({ status: 200, type: [TrainingCourse] })
+  @UsePipes(ValidationPipe)
+  @Put('/:id')
+  @IsPublic()
+  updateTrainingCourse(
+    @UserIdExtraction() userId: number,
+    @Body() trainingCourseDto: UpdateTrainingCourseDto,
+  ) {
+    return this.trainingCourseService.updateTrainingCourse(
+      trainingCourseDto,
+      userId,
+    );
   }
 }
