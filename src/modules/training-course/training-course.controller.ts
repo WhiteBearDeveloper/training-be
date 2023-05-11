@@ -56,7 +56,7 @@ export class TrainingCourseController {
   @ApiOperation({ summary: 'Обновление тренировочного курса' })
   @ApiResponse({ status: 200, type: [TrainingCourse] })
   @UsePipes(ValidationPipe)
-  @Put('/:id')  
+  @Put('/:id')
   updateTrainingCourse(
     @UserIdExtraction() userId: number,
     @Body() trainingCourseDto: UpdateTrainingCourseDto,
