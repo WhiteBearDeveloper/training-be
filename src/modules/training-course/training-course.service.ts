@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { TrainingCourse } from './training-course.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateTrainingCourseDto } from './dto/create-training-course.dto';
@@ -63,5 +63,18 @@ export class TrainingCourseService {
       training.setDataValue('control', { isEditable: true });
     }
     return training;
+  }
+
+  async deleteTrainingCourse(id: number): Promise<number> {
+    const isSuccessDelete = await this.trainingCourseRepository.destroy({
+      where: { id },
+    });
+    if (!isSuccessDelete) {
+      throw new HttpException(
+        `Ошибка при удалении элемента с id ${id}`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    return id;
   }
 }

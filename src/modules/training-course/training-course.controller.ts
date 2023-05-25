@@ -6,6 +6,7 @@ import {
   Post,
   UsePipes,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TrainingCourseService } from './training-course.service';
@@ -65,5 +66,13 @@ export class TrainingCourseController {
       trainingCourseDto,
       userId,
     );
+  }
+
+  @ApiOperation({ summary: 'Удаление тренировочного курса' })
+  @ApiResponse({ status: 200, type: [TrainingCourse] })
+  @UsePipes(ValidationPipe)
+  @Delete('/:id')
+  deleteTrainingCourse(@Param('id') id: number) {
+    return this.trainingCourseService.deleteTrainingCourse(Number(id));
   }
 }
