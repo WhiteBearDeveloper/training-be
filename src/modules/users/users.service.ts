@@ -37,6 +37,12 @@ export class UsersService {
       where: { email },
       include: { all: true },
     });
+    if (!user) {
+      throw new HttpException(
+        'Нет пользователя с таким email',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
     return user;
   }
 
