@@ -3,7 +3,10 @@ import { TrainingCourse } from './training-course.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateTrainingCourseDto } from './dto/create-training-course.dto';
 import { ProfileService } from '../profile/profile.service';
-import { TrainingCourseModel } from '@whitebeardeveloper/training-logic/logic/types/training-course.types';
+import {
+  TrainingCourseDeleteAnswer,
+  TrainingCourseModel,
+} from '@whitebeardeveloper/training-logic/logic/types/training-course.types';
 import { UpdateTrainingCourseDto } from './dto/update-training-course.dto';
 
 @Injectable()
@@ -65,7 +68,7 @@ export class TrainingCourseService {
     return training;
   }
 
-  async deleteTrainingCourse(id: number): Promise<number> {
+  async deleteTrainingCourse(id: number): TrainingCourseDeleteAnswer {
     const isSuccessDelete = await this.trainingCourseRepository.destroy({
       where: { id },
     });
