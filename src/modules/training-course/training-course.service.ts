@@ -19,6 +19,12 @@ export class TrainingCourseService {
     userId: number,
   ): Promise<TrainingCourseModel> {
     const profileId = await this.profileService.getProfileIdByUserId(userId);
+    if (!profileId) {
+      throw new HttpException(
+        'Ошибка получения пользователя',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
     const trainingCourseDtb = await this.trainingCourseRepository.create({
       ...dto,
       authorId: profileId,
@@ -34,7 +40,7 @@ export class TrainingCourseService {
 
   async updateTrainingCourse(
     dto: UpdateTrainingCourseDto,
-    userId?: number,
+    userId: number,
   ): Promise<TrainingCourseModel> {
     const { id, ...data } = dto;
     await this.trainingCourseRepository.update(
