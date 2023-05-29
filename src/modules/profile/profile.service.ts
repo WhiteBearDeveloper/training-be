@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { Profile } from './profile.model';
@@ -25,6 +25,12 @@ export class ProfileService {
       include: { all: true },
       attributes: { exclude: ['userId'] },
     });
+    if (!profile) {
+      throw new HttpException(
+        'Нет профиля привязанного к данному пользователю',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
     return profile;
   }
 
@@ -33,6 +39,12 @@ export class ProfileService {
       where: { userId },
       attributes: { include: ['id'] },
     });
+    if (!profile) {
+      throw new HttpException(
+        'Нет профиля привязанного к данному пользователю',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
     return profile.id;
   }
 }
